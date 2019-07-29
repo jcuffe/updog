@@ -12,6 +12,7 @@ const loginStyle = css({
   justifyContent: "center",
   padding: 8,
   width: "100%",
+  fontWeight: 700,
   "& svg": { marginRight: 10, height: 25 },
   "& span": { position: "relative", display: "flex", alignItems: "center" }
 })
@@ -23,7 +24,6 @@ export const fbLoginStyle = merge(
     borderRadius: 5,
     backgroundColor: "#3A559F",
     color: "#FFF",
-    fontWeight: 700,
     "& svg": {
       enableBackground: "new 1 1 454 454",
       borderRadius: 2,
@@ -46,6 +46,9 @@ export const googleLoginStyle = merge(
 export const emailPasswordLoginStyle = merge(
   loginStyle,
   css({
-    backgroundColor: "orange"
+    backgroundColor: "orange",
+    padding: 6,
+    color: "#FFF",
+    "& svg": { height: 29 }
   })
 )

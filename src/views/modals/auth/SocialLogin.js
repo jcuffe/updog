@@ -17,7 +17,7 @@ const buttons = {
   email: {
     Icon: EmailPasswordIcon,
     css: emailPasswordLoginStyle,
-    name: "email"
+    name: "Email"
   }
 }
 
@@ -41,17 +41,26 @@ const Button = props => {
 
 const SocialLogin = ({ children, isLogin }) => {
   const [longestChild, setLongestChild] = useState(0)
+  const [shortestChild, setShortestChild] = useState(Infinity)
   const report = useCallback(
     ref => {
       if (ref) {
         if (ref.offsetWidth > longestChild) {
           setLongestChild(ref.offsetWidth)
         }
-        const offset = (ref.offsetWidth - longestChild) / 2
+        if (ref.offsetWidth < shortestChild) {
+          setShortestChild(ref.offsetWidth)
+        }
+        let offset
+        if (ref.offsetWidth == longestChild) {
+          offset = (longestChild - shortestChild) / 4
+        } else {
+          offset = (2 * ref.offsetWidth - longestChild - shortestChild) / 4
+        }
         ref.style = `left: ${offset}px`
       }
     },
-    [longestChild]
+    [longestChild, shortestChild]
   )
   return (
     <SocialLoginContext.Provider value={{ report, isLogin }}>
